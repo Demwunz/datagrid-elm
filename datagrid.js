@@ -8145,7 +8145,7 @@ var _elm_lang$html$Html_Attributes$classList = function (list) {
 };
 var _elm_lang$html$Html_Attributes$style = _elm_lang$virtual_dom$VirtualDom$style;
 
-var _Demwunz$datagrid_elm$Datagrid$tableRow = function (row) {
+var _Demwunz$datagrid_elm$Datagrid$bodyRow = function (row) {
 	return A2(
 		_elm_lang$html$Html$tr,
 		{ctor: '[]'},
@@ -8153,7 +8153,11 @@ var _Demwunz$datagrid_elm$Datagrid$tableRow = function (row) {
 			ctor: '::',
 			_0: A2(
 				_elm_lang$html$Html$td,
-				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$scope('row'),
+					_1: {ctor: '[]'}
+				},
 				{
 					ctor: '::',
 					_0: _elm_lang$html$Html$text(row.ticker),
@@ -8221,28 +8225,32 @@ var _Demwunz$datagrid_elm$Datagrid$tableRow = function (row) {
 		});
 };
 var _Demwunz$datagrid_elm$Datagrid$tableBody = function (rows) {
-	var tableRows = A2(_elm_lang$core$List$map, _Demwunz$datagrid_elm$Datagrid$tableRow, rows);
+	var bodyRows = A2(_elm_lang$core$List$map, _Demwunz$datagrid_elm$Datagrid$bodyRow, rows);
 	return A2(
 		_elm_lang$html$Html$tbody,
 		{ctor: '[]'},
-		tableRows);
+		bodyRows);
 };
-var _Demwunz$datagrid_elm$Datagrid$viewHeader = function (title) {
+var _Demwunz$datagrid_elm$Datagrid$headRow = function (row) {
 	return A2(
-		_elm_lang$html$Html$header,
-		{ctor: '[]'},
+		_elm_lang$html$Html$th,
 		{
 			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$h1,
-				{ctor: '[]'},
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html$text(title),
-					_1: {ctor: '[]'}
-				}),
+			_0: _elm_lang$html$Html_Attributes$scope('col'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(row.header),
 			_1: {ctor: '[]'}
 		});
+};
+var _Demwunz$datagrid_elm$Datagrid$tableHead = function (headers) {
+	var tableHeaders = A2(_elm_lang$core$List$map, _Demwunz$datagrid_elm$Datagrid$headRow, headers);
+	return A2(
+		_elm_lang$html$Html$tr,
+		{ctor: '[]'},
+		tableHeaders);
 };
 var _Demwunz$datagrid_elm$Datagrid$view = function (model) {
 	return A2(
@@ -8250,97 +8258,31 @@ var _Demwunz$datagrid_elm$Datagrid$view = function (model) {
 		{ctor: '[]'},
 		{
 			ctor: '::',
-			_0: _Demwunz$datagrid_elm$Datagrid$viewHeader(model.title),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$table,
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$id('datagrid'),
-						_1: {ctor: '[]'}
-					},
-					{
+			_0: A2(
+				_elm_lang$html$Html$table,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$id('datagrid'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$caption,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text(model.title),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
 						ctor: '::',
 						_0: A2(
 							_elm_lang$html$Html$thead,
 							{ctor: '[]'},
 							{
 								ctor: '::',
-								_0: A2(
-									_elm_lang$html$Html$tr,
-									{
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$scope('row'),
-										_1: {ctor: '[]'}
-									},
-									{
-										ctor: '::',
-										_0: A2(
-											_elm_lang$html$Html$th,
-											{ctor: '[]'},
-											{
-												ctor: '::',
-												_0: _elm_lang$html$Html$text('Ticker'),
-												_1: {ctor: '[]'}
-											}),
-										_1: {
-											ctor: '::',
-											_0: A2(
-												_elm_lang$html$Html$th,
-												{ctor: '[]'},
-												{
-													ctor: '::',
-													_0: _elm_lang$html$Html$text('Industry'),
-													_1: {ctor: '[]'}
-												}),
-											_1: {
-												ctor: '::',
-												_0: A2(
-													_elm_lang$html$Html$th,
-													{ctor: '[]'},
-													{
-														ctor: '::',
-														_0: _elm_lang$html$Html$text('Market Cap'),
-														_1: {ctor: '[]'}
-													}),
-												_1: {
-													ctor: '::',
-													_0: A2(
-														_elm_lang$html$Html$th,
-														{ctor: '[]'},
-														{
-															ctor: '::',
-															_0: _elm_lang$html$Html$text('Price'),
-															_1: {ctor: '[]'}
-														}),
-													_1: {
-														ctor: '::',
-														_0: A2(
-															_elm_lang$html$Html$th,
-															{ctor: '[]'},
-															{
-																ctor: '::',
-																_0: _elm_lang$html$Html$text('Change'),
-																_1: {ctor: '[]'}
-															}),
-														_1: {
-															ctor: '::',
-															_0: A2(
-																_elm_lang$html$Html$th,
-																{ctor: '[]'},
-																{
-																	ctor: '::',
-																	_0: _elm_lang$html$Html$text('Volume'),
-																	_1: {ctor: '[]'}
-																}),
-															_1: {ctor: '[]'}
-														}
-													}
-												}
-											}
-										}
-									}),
+								_0: _Demwunz$datagrid_elm$Datagrid$tableHead(model.headers),
 								_1: {ctor: '[]'}
 							}),
 						_1: {
@@ -8348,14 +8290,14 @@ var _Demwunz$datagrid_elm$Datagrid$view = function (model) {
 							_0: _Demwunz$datagrid_elm$Datagrid$tableBody(model.entries),
 							_1: {ctor: '[]'}
 						}
-					}),
-				_1: {ctor: '[]'}
-			}
+					}
+				}),
+			_1: {ctor: '[]'}
 		});
 };
-var _Demwunz$datagrid_elm$Datagrid$Model = F2(
-	function (a, b) {
-		return {entries: a, title: b};
+var _Demwunz$datagrid_elm$Datagrid$Model = F3(
+	function (a, b, c) {
+		return {headers: a, entries: b, title: c};
 	});
 var _Demwunz$datagrid_elm$Datagrid$Entry = F6(
 	function (a, b, c, d, e, f) {
@@ -8374,13 +8316,41 @@ var _Demwunz$datagrid_elm$Datagrid$initialEntries = {
 		}
 	}
 };
-var _Demwunz$datagrid_elm$Datagrid$initialModel = {entries: _Demwunz$datagrid_elm$Datagrid$initialEntries, title: 'Datagrid'};
+var _Demwunz$datagrid_elm$Datagrid$Header = function (a) {
+	return {header: a};
+};
+var _Demwunz$datagrid_elm$Datagrid$initialHeaders = {
+	ctor: '::',
+	_0: _Demwunz$datagrid_elm$Datagrid$Header('Ticker'),
+	_1: {
+		ctor: '::',
+		_0: _Demwunz$datagrid_elm$Datagrid$Header('Industry'),
+		_1: {
+			ctor: '::',
+			_0: _Demwunz$datagrid_elm$Datagrid$Header('Market Cap'),
+			_1: {
+				ctor: '::',
+				_0: _Demwunz$datagrid_elm$Datagrid$Header('Price'),
+				_1: {
+					ctor: '::',
+					_0: _Demwunz$datagrid_elm$Datagrid$Header('Change'),
+					_1: {
+						ctor: '::',
+						_0: _Demwunz$datagrid_elm$Datagrid$Header('Volume'),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		}
+	}
+};
+var _Demwunz$datagrid_elm$Datagrid$initialModel = {title: 'Datagrid', headers: _Demwunz$datagrid_elm$Datagrid$initialHeaders, entries: _Demwunz$datagrid_elm$Datagrid$initialEntries};
 var _Demwunz$datagrid_elm$Datagrid$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
 		return _elm_lang$core$Native_Utils.update(
 			model,
-			{entries: _Demwunz$datagrid_elm$Datagrid$initialEntries});
+			{headers: _Demwunz$datagrid_elm$Datagrid$initialHeaders, entries: _Demwunz$datagrid_elm$Datagrid$initialEntries});
 	});
 var _Demwunz$datagrid_elm$Datagrid$main = _elm_lang$html$Html$beginnerProgram(
 	{model: _Demwunz$datagrid_elm$Datagrid$initialModel, view: _Demwunz$datagrid_elm$Datagrid$view, update: _Demwunz$datagrid_elm$Datagrid$update})();
