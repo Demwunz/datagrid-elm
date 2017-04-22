@@ -8145,6 +8145,23 @@ var _elm_lang$html$Html_Attributes$classList = function (list) {
 };
 var _elm_lang$html$Html_Attributes$style = _elm_lang$virtual_dom$VirtualDom$style;
 
+var _Demwunz$datagrid_elm$Datagrid$marketCap = function (number) {
+	var value = _elm_lang$html$Html$text(
+		_elm_lang$core$Basics$toString(
+			_elm_lang$core$Basics$truncate(number)));
+	return A2(
+		_elm_lang$html$Html$td,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('numerical'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: value,
+			_1: {ctor: '[]'}
+		});
+};
 var _Demwunz$datagrid_elm$Datagrid$bodyRow = function (row) {
 	return A2(
 		_elm_lang$html$Html$tr,
@@ -8175,20 +8192,16 @@ var _Demwunz$datagrid_elm$Datagrid$bodyRow = function (row) {
 					}),
 				_1: {
 					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$td,
-						{ctor: '[]'},
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html$text(
-								_elm_lang$core$Basics$toString(row.marketcap)),
-							_1: {ctor: '[]'}
-						}),
+					_0: _Demwunz$datagrid_elm$Datagrid$marketCap(row.marketcap),
 					_1: {
 						ctor: '::',
 						_0: A2(
 							_elm_lang$html$Html$td,
-							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('numerical'),
+								_1: {ctor: '[]'}
+							},
 							{
 								ctor: '::',
 								_0: _elm_lang$html$Html$text(row.price),
@@ -8198,7 +8211,11 @@ var _Demwunz$datagrid_elm$Datagrid$bodyRow = function (row) {
 							ctor: '::',
 							_0: A2(
 								_elm_lang$html$Html$td,
-								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('numerical'),
+									_1: {ctor: '[]'}
+								},
 								{
 									ctor: '::',
 									_0: _elm_lang$html$Html$text(
@@ -8209,7 +8226,11 @@ var _Demwunz$datagrid_elm$Datagrid$bodyRow = function (row) {
 								ctor: '::',
 								_0: A2(
 									_elm_lang$html$Html$td,
-									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$class('numerical'),
+										_1: {ctor: '[]'}
+									},
 									{
 										ctor: '::',
 										_0: _elm_lang$html$Html$text(
@@ -8308,10 +8329,10 @@ var _Demwunz$datagrid_elm$Datagrid$initialEntries = {
 	_0: A6(_Demwunz$datagrid_elm$Datagrid$Entry, 'EVAN', 'Technical & System Software', 1837.89, '£47.04', 1.01e-2, 51718.0),
 	_1: {
 		ctor: '::',
-		_0: A6(_Demwunz$datagrid_elm$Datagrid$Entry, 'FILIP', 'Information Technology Services', 1837.89, '£47.04', 1.01e-2, 51718.0),
+		_0: A6(_Demwunz$datagrid_elm$Datagrid$Entry, 'FILIP', 'Information Technology Services', 1754.84, '£23.95', 5.5e-3, 114570.0),
 		_1: {
 			ctor: '::',
-			_0: A6(_Demwunz$datagrid_elm$Datagrid$Entry, 'EVAN', 'Technical & System Software', 1837.89, '£47.04', 1.01e-2, 51718.0),
+			_0: A6(_Demwunz$datagrid_elm$Datagrid$Entry, 'DELL', 'Personal Computers', 23388.24, '£13.32', -4.5e-3, 2.2162924e7),
 			_1: {ctor: '[]'}
 		}
 	}

@@ -59,8 +59,8 @@ initialHeaders =
 initialEntries : List Entry
 initialEntries =
     [ Entry "EVAN" "Technical & System Software" 1837.89 "£47.04" 0.0101 51718.0
-    , Entry "FILIP" "Information Technology Services" 1837.89 "£47.04" 0.0101 51718.0
-    , Entry "EVAN" "Technical & System Software" 1837.89 "£47.04" 0.0101 51718.0
+    , Entry "FILIP" "Information Technology Services" 1754.84 "£23.95" 0.0055 114570.0
+    , Entry "DELL" "Personal Computers" 23388.24 "£13.32" -0.0045 2.2162924E7
     ]
 
 -- UPDATE ----------------------------------------------------------------------
@@ -132,15 +132,27 @@ tableBody rows =
         tbody [] bodyRows
 
 
+marketCap : Float -> Html Msg
+marketCap number =
+  let
+      value =
+        number
+        |> truncate
+        |> toString
+        |> text
+  in
+      td [ class "numerical" ] [ value ]
+
+
 bodyRow : Entry -> Html Msg
 bodyRow row =
   tr [] [
       td [ scope "row" ] [ text row.ticker ]
     , td [] [ text row.industry ]
-    , td [] [ text (toString row.marketcap) ]
-    , td [] [ text row.price ]
-    , td [] [ text (toString row.change) ]
-    , td [] [ text (toString row.volume) ]
+    , marketCap row.marketcap
+    , td [ class "numerical" ] [ text row.price ]
+    , td [ class "numerical" ] [ text (toString row.change) ]
+    , td [ class "numerical" ] [ text (toString row.volume) ]
   ]
 
 
