@@ -27,6 +27,7 @@ type alias Model =
     , title : String
     }
 
+
 type alias Entry =
     { ticker : String
     , industry : String
@@ -36,8 +37,10 @@ type alias Entry =
     , volume : Float
     }
 
+
 type alias Header =
     { header : String }
+
 
 initialModel : Model
 initialModel =
@@ -45,6 +48,7 @@ initialModel =
     , headers = initialHeaders
     , entries = initialEntries
     }
+
 
 initialHeaders : List Header
 initialHeaders =
@@ -55,6 +59,7 @@ initialHeaders =
     , Header "Change"
     , Header "Volume"
     ]
+
 
 initialEntries : List Entry
 initialEntries =
@@ -103,33 +108,44 @@ view model =
       table [ id "datagrid" ] [
           caption [] [ text model.title ]
         , thead []
-          [ tableHead model.headers ]
-        , tableBody model.entries
+          [ thead_ model.headers ]
+        , tbody_ model.entries
       ]
     ]
 
 
-tableHead : List Header -> Html Msg
-tableHead headers =
+thead_ : List Header -> Html Msg
+thead_ headers =
     let
         tableHeaders =
-            List.map headRow headers
+            List.map th_ headers
     in
         tr [] tableHeaders
 
-
-headRow : Header -> Html Msg
-headRow row =
-  th [ scope "col" ] [ text row.header ]
-
-
-tableBody : List Entry -> Html Msg
-tableBody rows =
+tbody_ : List Entry -> Html Msg
+tbody_ rows =
     let
-        bodyRows =
-            List.map bodyRow rows
+        tr_ =
+            List.map body_tr rows
     in
-        tbody [] bodyRows
+        tbody [] tr_
+
+
+body_tr : Entry -> Html Msg
+body_tr row =
+  tr [] [
+      td [ scope "row" ] [ text row.ticker ]
+    , td [] [ text row.industry ]
+    , marketCap row.marketcap
+    , td [ class "numerical" ] [ text row.price ]
+    , td [ class "numerical" ] [ text (toString row.change) ]
+    , td [ class "numerical" ] [ text (toString row.volume) ]
+  ]
+
+
+th_ : Header -> Html Msg
+th_ row =
+  th [ scope "col" ] [ text row.header ]
 
 
 marketCap : Float -> Html Msg
@@ -142,18 +158,6 @@ marketCap number =
         |> text
   in
       td [ class "numerical" ] [ value ]
-
-
-bodyRow : Entry -> Html Msg
-bodyRow row =
-  tr [] [
-      td [ scope "row" ] [ text row.ticker ]
-    , td [] [ text row.industry ]
-    , marketCap row.marketcap
-    , td [ class "numerical" ] [ text row.price ]
-    , td [ class "numerical" ] [ text (toString row.change) ]
-    , td [ class "numerical" ] [ text (toString row.volume) ]
-  ]
 
 
 main : Program Never Model Msg

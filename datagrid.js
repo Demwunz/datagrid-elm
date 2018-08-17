@@ -8162,7 +8162,21 @@ var _Demwunz$datagrid_elm$Datagrid$marketCap = function (number) {
 			_1: {ctor: '[]'}
 		});
 };
-var _Demwunz$datagrid_elm$Datagrid$bodyRow = function (row) {
+var _Demwunz$datagrid_elm$Datagrid$th_ = function (row) {
+	return A2(
+		_elm_lang$html$Html$th,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$scope('col'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(row.header),
+			_1: {ctor: '[]'}
+		});
+};
+var _Demwunz$datagrid_elm$Datagrid$body_tr = function (row) {
 	return A2(
 		_elm_lang$html$Html$tr,
 		{ctor: '[]'},
@@ -8245,29 +8259,15 @@ var _Demwunz$datagrid_elm$Datagrid$bodyRow = function (row) {
 			}
 		});
 };
-var _Demwunz$datagrid_elm$Datagrid$tableBody = function (rows) {
-	var bodyRows = A2(_elm_lang$core$List$map, _Demwunz$datagrid_elm$Datagrid$bodyRow, rows);
+var _Demwunz$datagrid_elm$Datagrid$tbody_ = function (rows) {
+	var tr_ = A2(_elm_lang$core$List$map, _Demwunz$datagrid_elm$Datagrid$body_tr, rows);
 	return A2(
 		_elm_lang$html$Html$tbody,
 		{ctor: '[]'},
-		bodyRows);
+		tr_);
 };
-var _Demwunz$datagrid_elm$Datagrid$headRow = function (row) {
-	return A2(
-		_elm_lang$html$Html$th,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$scope('col'),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html$text(row.header),
-			_1: {ctor: '[]'}
-		});
-};
-var _Demwunz$datagrid_elm$Datagrid$tableHead = function (headers) {
-	var tableHeaders = A2(_elm_lang$core$List$map, _Demwunz$datagrid_elm$Datagrid$headRow, headers);
+var _Demwunz$datagrid_elm$Datagrid$thead_ = function (headers) {
+	var tableHeaders = A2(_elm_lang$core$List$map, _Demwunz$datagrid_elm$Datagrid$th_, headers);
 	return A2(
 		_elm_lang$html$Html$tr,
 		{ctor: '[]'},
@@ -8303,12 +8303,12 @@ var _Demwunz$datagrid_elm$Datagrid$view = function (model) {
 							{ctor: '[]'},
 							{
 								ctor: '::',
-								_0: _Demwunz$datagrid_elm$Datagrid$tableHead(model.headers),
+								_0: _Demwunz$datagrid_elm$Datagrid$thead_(model.headers),
 								_1: {ctor: '[]'}
 							}),
 						_1: {
 							ctor: '::',
-							_0: _Demwunz$datagrid_elm$Datagrid$tableBody(model.entries),
+							_0: _Demwunz$datagrid_elm$Datagrid$tbody_(model.entries),
 							_1: {ctor: '[]'}
 						}
 					}
